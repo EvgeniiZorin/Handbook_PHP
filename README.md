@@ -1,6 +1,6 @@
 # PHP handbook
 
-*Ver 1.0.0*
+*Ver 2.0.0*
 
 > This is a practical guide for using PHP that I wrote for my everyday use. 
 > .
@@ -102,11 +102,18 @@ echo $$foo
 PHP is a dynamically-typed language (don't need to define type of variable). \n
 In PHP, there are *scalar data types* (bool, int, float, string), *compound data types* (array, object, callable, iterable), and *special data types* (resource, null). \n
 
-## Bool
+```php
+echo gettype($x); # Print type of variable
+var_dump($varname) # Print all that is known about a variable
+```
+
+## Scalar
+
+### Bool
 - Values: true, True, TRUE; true = 1, false = None
 - The following evaluates to False: int (0, -0), floats (0.0, -0.0), strings ('', '0'), array ([]), null
 
-## Int
+### Int
 
 Functions:
 ```php
@@ -115,10 +122,9 @@ Functions:
 - Binary numbers: `$x = 0b110;`
 - When int overflow occurs (it exceeds `PHP_INT_MAX`), the type changes to float, in the format 9.22E+18
 - Check if integer: `is_int($x)`
-
 ```
 
-## Float
+### Float
 Functions:
 ```php
 - `$a = 5.3e+10`;
@@ -128,7 +134,7 @@ Functions:
 - Functions: `is_infinite($x)`, `is_finite($x)`, `is_nan($x)`
 ```
 
-## String
+### String
 
 - Print 1st letter: `echo $var[0];`
 - Strings are mutable: `$var[2] = 'I`
@@ -159,20 +165,81 @@ Some functions:
 - `nl2br($text)` converts newlines to <br> that are recognised by html
 
 ## Compound data types
-*Compound types*:
-- **array**: `$var1 = [1, 2, 3, 'a', 'b', true]; print_r($companies);`
-- **object**
-- **callable**
-- **iterable**
 
-*Special types*
-- **resource**
-- **null**
+### Array
+
+Arrays in PHP are **0-based**.
 
 ```php
-echo gettype($x); # Print type of variable
-var_dump($varname) # Print all that is known about a variable
+$var1 = [1, 2, 3, 'a', 'b', true]; print_r($companies);
+$array2 = array('PHP', 'Python', 'C++');
+echo $array2[0];
+$array2[1] = 'Ruby';
+
+# Check if an item on specified index exists
+isset($array[3]);
+
+# Print items in array
+echo '<pre>';
+print_r($array2);
+echo '</pre>';
+
+# Get length of array
+echo count($array);
+
+# Append a value to the array
+$array2[] = 'New Value';
+#or
+array_push($array2, 'Item1', 'Item2', 'Item3');
+
+# Delete the value at an index 0
+array_shift($array2);
+
+# Delete the value at a specified index. NOTE: 'unset' doesn't re-index the array
+unset($array2[3])
 ```
+
+There is also a version of an array similar to dictionary in Python (or HashMap in other languages):
+```php
+$dict1 = [
+	'php' => 'ver 9.0',
+	'R' => 'ver unknown'
+];
+# With the same logic, can create multidimensional (nested) arrays, or dictionary of dictionaries
+
+# Add an item
+$dict1['go'] = '1.15';
+
+echo $dict1['php'];
+```
+
+### Object
+
+### Callable
+
+### Iterable
+
+## Special data types
+
+### Resource
+
+### Null
+
+```php
+$x = null;
+
+var_dump(is_null($x));
+
+var_dump($x === null);
+
+# A variable is also a null if it hasn't been defined yet
+
+# also, a variable is null if we unset it
+$x = 123;
+unset($x);
+var_dump($x);
+```
+
 
 ## Type Casting
 
