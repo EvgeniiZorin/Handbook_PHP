@@ -39,7 +39,7 @@ comments
 `echo ('...');`
 # Concatenate strings
 echo 'word1', ' ', 'word2' ;
-$a = 'word2'; echo 'word1' . $a . 'word3' ; 
+$a = 'word2'; echo 'word1' . $a . 'word3' . '<br />'; 
 
 print 'Hello world!'; # 'print' returns 1
 print('...');
@@ -99,25 +99,66 @@ echo $$foo
 
 # Data types & type casting
 
-PHP is a dynamically-typed language (don't need to define type of variable)
+PHP is a dynamically-typed language (don't need to define type of variable). \n
+In PHP, there are *scalar data types* (bool, int, float, string), *compound data types* (array, object, callable, iterable), and *special data types* (resource, null). \n
 
-*Scalar types*:
-- **bool** (true, True, TRUE): `$var1 = true`; true = 1, false = None
-	- The following evaluates to False: int (0, -0), floats (0.0, -0.0), strings ('', '0'), array ([]), null
-- **int**
-	- Print max possible integer: `PHP_INT_MAX`, `PHP_INT_MIN`, `PHP_INT_SIZE`
-	- Can assign a hexadecimal number: `$x = 0x2A; // = 42`
-	- Binary numbers: `$x = 0b110;`
-	- When int overflow occurs (it exceeds `PHP_INT_MAX`), the type changes to float, in the format 9.22E+18
-	- Check if integer: `is_int($x)`
-- **float**:
-	- `$a = 5.3e+10`;
-	- Constants: `PHP_FLOAT_MAX`, `PHP_FLOAT_MIN`
-	- `ceil(5.8)`, `floor(5.3)`
-	- Float overflow -> infinity number
-	- Functions: `is_infinite($x)`, `is_finite($x)`, `is_nan($x)`
-- **string**
+## Bool
+- Values: true, True, TRUE; true = 1, false = None
+- The following evaluates to False: int (0, -0), floats (0.0, -0.0), strings ('', '0'), array ([]), null
 
+## Int
+
+Functions:
+```php
+- Print max possible integer: `PHP_INT_MAX`, `PHP_INT_MIN`, `PHP_INT_SIZE`
+- Can assign a hexadecimal number: `$x = 0x2A; // = 42`
+- Binary numbers: `$x = 0b110;`
+- When int overflow occurs (it exceeds `PHP_INT_MAX`), the type changes to float, in the format 9.22E+18
+- Check if integer: `is_int($x)`
+
+```
+
+## Float
+Functions:
+```php
+- `$a = 5.3e+10`;
+- Constants: `PHP_FLOAT_MAX`, `PHP_FLOAT_MIN`
+- `ceil(5.8)`, `floor(5.3)`
+- Float overflow -> infinity number
+- Functions: `is_infinite($x)`, `is_finite($x)`, `is_nan($x)`
+```
+
+## String
+
+- Print 1st letter: `echo $var[0];`
+- Strings are mutable: `$var[2] = 'I`
+
+```php
+# Heredoc 
+$x = 1; $y = 2;
+$text = <<<TEXT
+Line 1 $x
+line 2 $y
+line 3
+TEXT;
+
+echo $text
+echo nl2br($text)
+
+# Nowdoc
+### Cannot use variables inside
+$text = <<<'TEXT'
+line 1
+line 2
+TEXT;
+
+echo nl2br($text)
+```
+
+Some functions:
+- `nl2br($text)` converts newlines to <br> that are recognised by html
+
+## Compound data types
 *Compound types*:
 - **array**: `$var1 = [1, 2, 3, 'a', 'b', true]; print_r($companies);`
 - **object**
