@@ -1,6 +1,6 @@
 # PHP handbook
 
-*Ver 2.0.0*
+*Ver 2.1.0*
 
 > This is a practical guide for using PHP that I wrote for my everyday use. 
 > .
