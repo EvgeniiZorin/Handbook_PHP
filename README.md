@@ -288,3 +288,99 @@ if ($isComplete) {
 
 
 ?>
+
+
+# Expressions
+
+Expressions include variable assignment, comparison, IF conditions, and functions definition. 
+
+```php
+$x = 5;
+```
+
+Operator is something that takes multiple expressions and results in a value. 
+
+## Operators
+
+**Arithmetic operators**
+
+These include the following: `+` `-` `*` `/` `%` `**`
+
+In division, the result will be float unless both values are int and they are divisible without residual. 
+
+Modulus `%` gives the remainder of the two divisors. 
+
+**Assignment operators**
+
+These are normal `=` and combined operators `+=` `-=` `*=` `/=` `%=` `**=`
+
+```php
+$x = 5; 
+$x += 10; 
+```
+
+**String operators**
+
+These are:
+- Concatenation operator: `.`
+- Concatenation operator combined with assignment: `.=`
+
+```php
+$x = 'Hello';
+$x = $x . ' World'; #or
+$x .= ' World';
+```
+
+**Comparison operators**
+
+These are `==` `===` `!=` `!==` `>` `<` `>=` `<=`
+
+
+```php
+$x = 5; $y = '5'; 
+$x == $y # Loose comparison - does typecasting for you; -> True
+$x === $y # Strict comparison - considers the original data type; -> False
+
+```
+
+**Error control operator**
+
+```php
+$x = file('foo.txt'); # Will throw an error if the file doesn't exist
+$x = @file('foo.txt'); # Will not throw an error
+```
+
+**Increment / Decrement operator**
+
+These include `++` `--`
+
+```php
+$x = 5;
+$x++; # PRE-INCREMENT: Returns the value, then increments it
+$x--;
+
+++$x; # POST-INCREMENT: Increment the value, then returns it
+--$x;
+```
+
+**Logical operators**
+
+Examples: `&&` `||` `!` `and` `or` `xor`
+
+```php
+# && AND
+$x = true; $y = true;
+$x && $y # False, because they are different
+
+# || OR
+$x || $y # True, because one of them is true
+
+# ! - negation
+!$x && $y # NOT x and y
+
+# && , 'and' are both 'and', but have different precedence
+
+
+```
+
+Other examples include bitwise operators, array operators, execute operators, type operators
