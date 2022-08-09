@@ -1,6 +1,6 @@
 # PHP handbook
 
-*Ver 2.1.0*
+*Ver 2.2.0*
 
 > This is a practical guide for using PHP that I wrote for my everyday use. 
 > .
@@ -300,6 +300,25 @@ $x = 5;
 
 Operator is something that takes multiple expressions and results in a value. 
 
+**Match expression**
+
+The outcome can be assigned to a variable. 
+
+In 'match' expression, a default value HAS to be specified. 
+
+'Match' does strict comparison (===). 
+
+Match only performs one operation per condition found. 
+
+```php
+$paymentStatus = 1;
+match($paymentStatus) {
+	1 => print 'Paid', 
+	2,3 => print 'Payment Declined',
+	default => print 'Unknown Payment Status',
+};
+```
+
 ## Operators
 
 **Arithmetic operators**
@@ -383,4 +402,216 @@ $x || $y # True, because one of them is true
 
 ```
 
-Other examples include bitwise operators, array operators, execute operators, type operators
+Other examples include bitwise operators, array operators, execute operators, type operators, nullsafe operators
+
+**Bitwise operators**
+
+These are `&` `|` `^` `~` `<<` `>>`
+
+```php
+# & operators (AND): returns 1 if both of them are 1
+$x = 6; # Binary: 110
+$y = 3; # Binary: 011
+var_dump($x & $y) # -> int(2) (which in binary is: 010)
+
+# 110
+# &
+# 011
+# ----
+# 010 = 2
+
+# | (or): returns 1 if either one is 1
+
+// 110
+// &
+// 011
+// ----
+// 111 = 7
+
+# ^ (xor) operator - : returns bits that are neither in one nor in another
+// 110
+// ^
+// 011
+// ----
+// 101 = 5
+
+
+# ~ (negation operator): flips the bits
+# 110 
+# ~
+# 001
+
+# << - shift bits to the left - multiply by two
+# >> - shift bits to the right - divide by two
+
+var_dump($x << $y)
+// 110
+// <<<
+// 110000 = 48
+
+
+```
+
+**Array operators**
+
+```php
+
+# Union operator (+)
+# unites values that are at the same keys
+$x = ['a', 'b', 'c']
+$y = ['d', 'e', 'f', 'g', 'h']
+
+print_r($x + $y) # -> ['a', 'b', 'c', 'g', 'h']
+
+# comparison operator (==)
+# returns True if keys:value pairs match
+
+# strict comparison operator (===)
+
+# inequality !=, strict inequality !==
+```
+
+# Conditional statements
+
+(if / else / elseif / else if /)
+
+```php
+if ($condition) {
+	...
+}
+```
+
+Examples: 
+```php
+$score = 85; 
+if ($score >= 80) {
+	echo 'A';
+	if ($score >= 95) {
+		echo '+';
+	}
+} elseif ($score >= 70) {
+	echo 'B';
+} else {
+	echo 'F';
+}
+
+# or with some php functionality embedded, e.g. if you want to include it within your html
+<?php $score = 55 ?>
+<?php if ($score >= 90): ?>
+	<strong style="color: green;">A</strong>
+<?php elseif ($score >= 80): ?>
+	<strong>B</strong>
+<?php else: ?>
+	<strong>F</strong>
+<?php endif ?>
+```
+
+**Switch statement**
+
+Switch statement does loose comparison (==). 
+
+for each case, can include multiple actions. 
+
+```php
+$paymentStatus = 'paid'; 
+
+switch($paymentStatus) {
+	case 'paid':
+		echo 'Paid';
+		break;
+	case 'declined':
+		echo 'Payment Declined';
+		break;
+	default:
+		echo 'Unknown Payment Status';
+}
+```
+
+
+
+# Loops
+
+## While 
+
+Syntax:
+```php
+# Syntax 1
+while ($condition) {
+	...
+}
+# Syntax 2
+while ($condition):
+	...
+endwhile;
+```
+
+Examples: 
+
+```php
+$i = 0;
+while ($i <= 15) {
+	echo $i++;
+}
+
+
+$i = 0;
+while (true) {
+	if ($i >= 15) {
+		break 1; # break out of 1 'while' loop
+	}
+	echo $i++;
+}
+```
+
+## Do-while
+
+A do-while loop guarantuess that the action will be executed at least once, as the 'while' condition is checked at the end. 
+
+```php
+$i = 0;
+do {
+	echo $i++;
+} while ($i <= 15);
+```
+
+## For
+
+```php
+for ($i = 0; $i < 15; $i++) {
+	echo $i;
+}
+
+# alternative syntax
+for (...):
+	...
+endfor;
+```
+
+Examples: 
+```php
+$text = ['a', 'b', 'c', 'd']
+for ($i = 0; $i < count($text); $i++) {
+	echo $text[$i] . '<br />';
+}
+```
+
+
+## Foreach
+
+Used to iterate over items in an *array*. 
+
+```php
+$programmingLanguages = ['php', 'java', 'c++', 'go']
+foreach($programmingLanguages as $language) {
+	echo $language . '<br />';
+}
+
+# alternative syntax
+foreach($programmingLanguages as $language):
+	...
+endforeach;
+
+foreach($programmingLanguages as $key => $language) {
+	echo $language . '<br />';
+}
+```
